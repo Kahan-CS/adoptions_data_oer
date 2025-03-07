@@ -30,11 +30,11 @@ def fetch_title(url):
         return "Unknown Title"
 
 def process_csv(input_file, output_file):
-    """Reads input CSV, processes links, and writes output CSV with added title field."""
+    """Reads input CSV, maps links to titles, and writes output CSV with added title column."""
     with open(input_file, 'r', newline='', encoding='utf-8') as infile, open(output_file, 'w', newline='', encoding='utf-8') as outfile:
-        reader = csv.DictReader(infile, delimiter='\t')
+        reader = csv.DictReader(infile)
         fieldnames = reader.fieldnames + ["Link Titles"]
-        writer = csv.DictWriter(outfile, fieldnames=fieldnames, delimiter='\t')
+        writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         
         writer.writeheader()
         for row in reader:
@@ -43,13 +43,12 @@ def process_csv(input_file, output_file):
             # Normalize and deduplicate links
             unique_links = {normalize_url(link) for link in links}
             
-            # Get associated titles (fetch if not in predefined map)
+            # Map links to titles
             link_titles = [link_title_mapping.get(link, fetch_title(link)) for link in unique_links]
             
-            # Add to row and write to output
-            row["Links in CSV format"] = ", ".join(unique_links)  # Overwrite with cleaned links
+            # Add titles to row and write to output
             row["Link Titles"] = ", ".join(link_titles)
             writer.writerow(row)
 
-# usage
-process_csv("input_data.tsv", "output_data.tsv")
+# Usage
+process_csv("./data/input_data.csv", "./data/output_data.csv")
