@@ -1,8 +1,7 @@
----
 
 ## Instructions for the OER Team at Conestoga
 
-To run the Python file located at [this link](https://github.com/Kahan-CS/adoptions_data_oer/blob/master/oer_usage/final_extraction_script.py), follow these steps:
+To run the Python file located at [this link](https://github.com/Kahan-CS/adoptions_data_oer/blob/master/oer_usage/final_extraction_script.py), follow these steps
 
 1. **Set up the Python 3 environment**  
    Follow the instructions in this guide to install Python 3:  
@@ -17,5 +16,3 @@ To run the Python file located at [this link](https://github.com/Kahan-CS/adopti
    ```bash
    python3 final_extraction_script.py
    ```
-
----
